@@ -3,6 +3,7 @@ import inspect
 import json
 import logging
 import random
+from protocol import post
 import requests
 
 import httplib
@@ -65,49 +66,20 @@ class JsonZilla:
         print r.text
         print ""
 
-    def bugs(self, ids):
+    @post("Bug.get")
+    def bugs(self, ids, result=None, error=None):
         """ Returns information about a list of bugs. """
-        querystring = {
-            "method": "Bug.get",
-            "params": [
-                {'ids': ids}
-            ],
-            "id": self._id
-        }
-        r = self.session.post(self.service_url, data=json.dumps(querystring))
-        print ""
-        print r.status_code, r.text
-        print ""
+        print result
 
-    def search(self, bug_ids):
+    @post("Bug.search")
+    def search(self, id, result=None, error=None):
         """ Returns information about a list of bugs matching criterias. """
-        querystring = {
-            "method": "Bug.search",
-            "params": [
-                {'id': bug_ids}
-            ],
-            "id": self._id
-        }
-        r = self.session.post(self.service_url, data=json.dumps(querystring))
-        print ""
-        print r.status_code, r.text
-        print ""
+        print result
 
-    def __compatibility_bugs_method(self, bug_ids):
+    @post("Bug.get_bugs")
+    def __compatibility_bugs_method(self, ids, result=None, error=None):
         """ Returns information about a list of bugs. """
-        querystring = {
-            "method": "Bug.get_bugs",
-            "params": [
-                {
-                    'ids': bug_ids
-                }
-            ],
-            "id": self._id
-        }
-        r = self.session.post(self.service_url, data=json.dumps(querystring))
-        print ""
-        print r.status_code, r.text
-        print ""
+        print result
 
     def bug(self, bug_id):
         """ Returns information about a single bug. """
