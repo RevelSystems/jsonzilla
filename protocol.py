@@ -48,7 +48,6 @@ def post(method):
                 name = f.func_code.co_varnames[i]
                 params[name] = args[i]
 
-            error = None
             result = None
 
             data = {
@@ -64,13 +63,11 @@ def post(method):
                 if len(r.text):
                     contents = r.json()
                     if 'error' in contents:
-                        error = contents['error']
+                        raise BugzillaRpcException(contents['error'])
                     if 'result' in contents:
                         result = contents['result']
             else:
                 raise BugzillaRequestException(int(r.status_code), r.text)
-            if error:
-                raise BugzillaRpcException(error)
             params['result'] = result
             return f(json_zilla, **params)
         return decorator

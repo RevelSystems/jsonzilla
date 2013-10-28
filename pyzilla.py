@@ -25,20 +25,19 @@ class JsonZilla:
 
     @post("Bug.get")
     def bugs(self, ids, result=None):
-        """ Returns information about a list of bugs. """
+        """ Information about a list of bugs. """
         return result
 
     @post("Bug.search")
     def search(self, id, result=None):
-        """ Returns information about a list of bugs matching criterias. """
+        """ Information about a list of bugs matching criterias. """
         return result
 
     @post("Bug.get_bugs")
     def __compatibility_bugs_method(self, ids, result=None):
-        """ Returns information about a list of bugs. """
+        """ Information about a list of bugs. """
         return result
 
     def bug(self, bug_id):
-        """ Returns information about a single bug. """
+        """ Information about a single bug. """
         return self.bugs(bug_id)
-
