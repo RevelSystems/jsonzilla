@@ -31,29 +31,10 @@ class JsonZilla:
         """ Login into bugzilla with given credentials. """
         pass
 
-    def time(self):
-        data = {
-            "method": "Bugzilla.time",
-            "Bugzilla_login": self.username,
-            "Bugzilla_password": self.password,
-            "id": self._id
-        }
-        r = self.session.get(self.service_url, params=data)
-        print ""
-        print r.text
-        print ""
-
-    def version(self):
-        data = {
-            "method": "Bugzilla.version",
-            "Bugzilla_login": self.username,
-            "Bugzilla_password": self.password,
-            "id": self._id
-        }
-        r = self.session.get(self.service_url, params=data)
-        print ""
-        print r.text
-        print ""
+    @post("Bugzilla.version")
+    def version(self, result=None, error=None):
+        """ Bugzilla version. """
+        print result
 
     @post("Bug.get")
     def bugs(self, ids, result=None, error=None):
@@ -73,5 +54,4 @@ class JsonZilla:
     def bug(self, bug_id):
         """ Returns information about a single bug. """
         return self.bugs(bug_id)
-
 
