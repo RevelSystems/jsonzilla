@@ -58,6 +58,6 @@ def post(method):
             if error:
                 raise BugzillaRpcException(error)
             params['result'] = result
-            f(json_zilla, **params)
+            return f(json_zilla, **params)
         return decorator
     return decorate
