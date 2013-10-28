@@ -24,23 +24,12 @@ class JsonZilla:
         self.session = requests.Session()
         self.session.headers = {"Content-Type": "application/json-rpc"}
         self._id = random.randint(1, 100)
+        self.__login(username, password)
 
-    def login(self):
-        querystring = {
-            "method": "User.login",
-            "params": [
-                {
-                    "login": self.username,
-                    "password": self.password,
-                    "remember": True
-                }
-            ],
-            "id": self._id
-        }
-        r = self.session.post(self.service_url, data=json.dumps(querystring))
-        print ""
-        print r.status_code, r.text
-        print ""
+    @post("User.login")
+    def __login(self, login, password, remember=True, result=None, error=None):
+        """ Login into bugzilla with given credentials. """
+        pass
 
     def time(self):
         data = {
@@ -84,4 +73,5 @@ class JsonZilla:
     def bug(self, bug_id):
         """ Returns information about a single bug. """
         return self.bugs(bug_id)
+
 
