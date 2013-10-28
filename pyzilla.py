@@ -1,20 +1,6 @@
-import functools
-import inspect
-import json
-import logging
 import random
 from protocol import post
 import requests
-
-import httplib
-#httplib.HTTPConnection.debuglevel = 1
-
-#logging.basicConfig() # you need to initialize logging, otherwise you will not see anything from requests
-#logging.getLogger().setLevel(logging.DEBUG)
-#requests_log = logging.getLogger("requests.packages.urllib3")
-#requests_log.setLevel(logging.DEBUG)
-#requests_log.propagate = True
-
 
 class JsonZilla:
     def __init__(self, rpc_url, username, password):
