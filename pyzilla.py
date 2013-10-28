@@ -2,6 +2,7 @@ import random
 from protocol import post
 import requests
 
+
 class JsonZilla:
     def __init__(self, rpc_url, username, password):
         self.service_url = rpc_url
