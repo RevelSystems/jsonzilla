@@ -4,6 +4,23 @@ import random
 import requests
 
 
+class BugzillaRequestException(Exception):
+    def __init__(self, status_code, response_text):
+        self.status_code = status_code
+        self.response_text = response_text
+
+    def __repr__(self):
+        return "{}: {}".format(self.status_code, self.response_text)
+
+
+class BugzillaRpcException(Exception):
+    def __init__(self, error):
+        self.error = error
+
+    def __repr__(self):
+        return self.error
+
+
 def post(method):
     def decorate(f):
         @functools.wraps(f)
@@ -12,8 +29,6 @@ def post(method):
             params = kwargs
             if 'result' in params:
                 del params['result']
-            if 'error' in params:
-                del params['error']
 
             for i in range(1, len(args)):
                 name = f.func_code.co_varnames[i]
@@ -22,25 +37,26 @@ def post(method):
             error = None
             result = None
 
-            querystring = {
+            data = {
                 "method": method,
                 "params": [
                     params
                 ],
-                "id": random.randint(1, 100)
+                "id": random.randint(1, 1000)
             }
-            r = json_zilla.session.post(json_zilla.service_url, data=json.dumps(querystring))
+            r = json_zilla.session.post(json_zilla.service_url, data=json.dumps(data))
 
             if r.status_code == requests.codes.ok:
                 if len(r.text):
                     contents = r.json()
                     if 'error' in contents:
-                        if contents['error']:
-                            error = contents['error']
+                        error = contents['error']
                     if 'result' in contents:
-                        if contents['result']:
-                            result = contents['result']
-            params['error'] = error
+                        result = contents['result']
+            else:
+                raise BugzillaRequestException(int(r.status_code), r.text)
+            if error:
+                raise BugzillaRpcException(error)
             params['result'] = result
             f(json_zilla, **params)
         return decorator

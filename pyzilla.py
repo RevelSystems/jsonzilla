@@ -32,24 +32,24 @@ class JsonZilla:
         pass
 
     @post("Bugzilla.version")
-    def version(self, result=None, error=None):
+    def version(self, result=None):
         """ Bugzilla version. """
-        print result
+        return result
 
     @post("Bug.get")
-    def bugs(self, ids, result=None, error=None):
+    def bugs(self, ids, result=None):
         """ Returns information about a list of bugs. """
-        print result
+        return result
 
     @post("Bug.search")
-    def search(self, id, result=None, error=None):
+    def search(self, id, result=None):
         """ Returns information about a list of bugs matching criterias. """
-        print result
+        return result
 
     @post("Bug.get_bugs")
-    def __compatibility_bugs_method(self, ids, result=None, error=None):
+    def __compatibility_bugs_method(self, ids, result=None):
         """ Returns information about a list of bugs. """
-        print result
+        return result
 
     def bug(self, bug_id):
         """ Returns information about a single bug. """
