@@ -62,9 +62,9 @@ def post(method):
             if r.status_code == requests.codes.ok:
                 if len(r.text):
                     contents = r.json()
-                    if 'error' in contents:
+                    if 'error' in contents and contents['error']:
                         raise BugzillaRpcException(contents['error'])
-                    if 'result' in contents:
+                    if 'result' in contents and contents['result']:
                         result = contents['result']
             else:
                 raise BugzillaRequestException(int(r.status_code), r.text)
