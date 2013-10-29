@@ -1,0 +1,10 @@
+MANIFEST.in
+requirements.txt
+jsonzilla/__init__.py
+jsonzilla/api.py
+jsonzilla/protocol.py
+jsonzilla.egg-info/PKG-INFO
+jsonzilla.egg-info/SOURCES.txt
+jsonzilla.egg-info/dependency_links.txt
+jsonzilla.egg-info/requires.txt
+jsonzilla.egg-info/top_level.txt

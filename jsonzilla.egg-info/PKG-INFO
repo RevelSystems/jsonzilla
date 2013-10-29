@@ -1,0 +1,28 @@
+Metadata-Version: 1.0
+Name: jsonzilla
+Version: 0.0.0.1
+Summary: Bugzilla JSON-RPC wrapper
+Home-page: https://github.com/RevelSystems/jsonzilla
+Author: Max Korenkov
+Author-email: max@revelsystems.com
+License: Apache License, Version 2.0
+Description: jsonzilla
+        ============
+        
+            zilla = JsonZilla("http://mybugzilla.example.com/jsonrpc.cgi", "login@example.com", "secure")
+            print zilla.version()
+            print zilla.bugs([123, 456])
+            print zilla.bug(128)
+        
+        Debug Mode:
+        -----------
+        
+        You can enable `DEBUG` by setting environment variable `JSONZILLA_DEBUG` to `True`.
+        
+        Build instructions:
+        -------------------
+        
+            python -c "import setuptools; execfile('setup.py')" bdist_egg
+        
+        
+Platform: UNKNOWN

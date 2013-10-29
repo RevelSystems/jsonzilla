@@ -41,5 +41,5 @@ setup(
     dependency_links=parse_dependency_links('requirements.txt'),
     license='Apache License, Version 2.0',
     description='Bugzilla JSON-RPC wrapper',
-    long_description=open('README.txt').read(),
+    long_description=open('README.md').read(),
 )
