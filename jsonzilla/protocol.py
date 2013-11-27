@@ -20,19 +20,15 @@ if DEBUG:
 
 class BugzillaRequestException(Exception):
     def __init__(self, status_code, response_text):
-        self.status_code = status_code
-        self.response_text = response_text
-
-    def __repr__(self):
-        return "{}: {}".format(self.status_code, self.response_text)
+        Exception.__init__(self, "{}: {}".format(status_code, response_text))
 
 
 class BugzillaRpcException(Exception):
     def __init__(self, error):
+        Exception.__init__(self, error['message'])
         self.error = error
-
-    def __repr__(self):
-        return self.error
+        self.message = error['message']
+        self.code = error['code']
 
 
 def post(method):
