@@ -15,4 +15,10 @@ Build instructions:
 -------------------
 
     python -c "import setuptools; execfile('setup.py')" bdist_egg
+    
+Installation:
+-------------
+
+    pip install git+https://github.com/RevelSystems/jsonzilla.git@master
+
 
