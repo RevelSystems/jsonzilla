@@ -11,12 +11,13 @@ class JsonZilla:
         self.session = requests.Session()
         self.session.headers = {"Content-Type": "application/json-rpc"}
         self._id = random.randint(1, 100)
-        self.__login(username, password)
+        self.token = None
+        self.token = self.__login(username, password).get('token')
 
     @post("User.login")
     def __login(self, login, password, remember=True, result=None, error=None):
         """ Login into bugzilla with given credentials. """
-        pass
+        return result
 
     @post("Bugzilla.version")
     def version(self, result=None):

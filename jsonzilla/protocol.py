@@ -44,6 +44,7 @@ def post(method):
                 name = f.func_code.co_varnames[i]
                 params[name] = args[i]
 
+            params['token'] = json_zilla.token
             result = None
 
             data = {
@@ -54,6 +55,7 @@ def post(method):
                 "id": random.randint(1, 1000)
             }
             r = json_zilla.session.post(json_zilla.service_url, data=json.dumps(data))
+            del params['token']
 
             if r.status_code == requests.codes.ok:
                 if len(r.text):
