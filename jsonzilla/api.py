@@ -42,3 +42,8 @@ class JsonZilla:
     def bug(self, bug_id):
         """ Information about a single bug. """
         return self.bugs(bug_id)
+
+    @post("Bug.add_comment")
+    def add_comment(self, id, comment, result=None):
+        """ Add comment to the bug. """
+        return result
