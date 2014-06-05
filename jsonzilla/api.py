@@ -47,3 +47,8 @@ class JsonZilla:
     def add_comment(self, id, comment, result=None):
         """ Add comment to the bug. """
         return result
+
+    @post("Bug.update")
+    def update(self, ids, result=None, **kwargs):
+        """ Update bug's fields. """
+        return result
