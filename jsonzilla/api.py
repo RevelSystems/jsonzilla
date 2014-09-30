@@ -52,3 +52,8 @@ class JsonZilla:
     def update(self, ids, result=None, **kwargs):
         """ Update bug's fields. """
         return result
+
+    @post("Bug.history")
+    def bug_history(self, ids, result=None):
+        """ History of bug changings. """
+        return result
