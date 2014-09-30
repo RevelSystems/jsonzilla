@@ -55,5 +55,5 @@ class JsonZilla:
 
     @post("Bug.history")
     def bug_history(self, ids, result=None):
-        """ History of bug changings. """
+        """ History of bug changes. """
         return result
